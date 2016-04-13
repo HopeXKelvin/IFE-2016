@@ -32,6 +32,7 @@ function addAqiData() {
   if(errorMsgList.length){
     var errorStr = errorMsgList.join(" & ");
     alert(errorStr);
+    errorMsgList.length = 0;//清空
   }else{
     aqiData[cityValue] = aqiValue;
   }
@@ -75,12 +76,33 @@ function isInteger(num){
  */
 function renderAqiList() {
   var table = document.getElementById("aqi-table");
-  //每次渲染 先删除table下面的所有子节点
+  //每次渲染前 先删除table下面的所有子节点
   var childs = table.childNodes;
   for(var i = childs.length-1; i >=0; i--){
       // alert(childs[i].nodeName);
       table.removeChild(childs[i]);
   }
+  //先判断aqiData里面是否有值，有值的情况下才渲染出表头
+  if(isObj(aqiData)){
+    //创建表头
+    var tHeader = document.createElement("tr");
+    tHeader.innerHTML = '<td>城市</td><td>空气质量</td><td>操作</td>';
+    table.appendChild(tHeader);
+  }
+  //根据 aqiData的数据来重新渲染新的dom结构
+  for(key in aqiData){
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td>'+key+'</td><td>'+aqiData[key]+'</td><td><button>删除</button></td>';
+    table.appendChild(tr);
+  }
+}
+
+//判断一个{}对象是否为空
+function isObj(obj){
+  for(key in obj){
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -96,9 +118,16 @@ function addBtnHandle() {
  * 点击各个删除按钮的时候的处理逻辑
  * 获取哪个城市数据被删，删除数据，更新表格显示
  */
-function delBtnHandle() {
+function delBtnHandle(e) {
   // do sth.
-
+  //判断e.target是否为button
+  if(e.target && e.target.nodeName == "BUTTON"){
+    var deleteTr = e.target.parentNode.parentNode;
+    var deleteTd = deleteTr.firstChild;
+    var delContent = deleteTd.innerHTML;
+    //根据key值删除对象里面的成员
+    delete aqiData[delContent];
+  }
   renderAqiList();
 }
 
@@ -107,7 +136,9 @@ function init() {
   var addBtn = document.getElementById("add-btn");
   addBtn.onclick = addBtnHandle;
   // 想办法给aqi-table中的所有删除按钮绑定事件，触发delBtnHandle函数
-
+  //在table的tr还没有被渲染出来之前，只能给table这个父节点绑定事件
+  var aqiTable = document.getElementById("aqi-table");
+  aqiTable.onclick = delBtnHandle;
 }
 
 init();
