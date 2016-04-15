@@ -1,0 +1,110 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <style>
+    .chart-box{
+      width: 1080px;
+      height: 500px;
+      margin: 25px auto;
+    }
+    .vertical-bar{
+      display: inline-block;
+      width: 10px;
+      border-left: 1px solid #000;
+    }
+    .vertical-list{
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0 -30px;
+    }
+    .vertical-item{
+      list-style: none;
+      height: 50px;
+    }
+
+    .datas-bar{
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    .datas-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .data-item{
+      background-color: #aaa;
+      vertical-align: bottom;
+    }
+    .horizontal-bar{
+      border-top: 1px solid #000;
+      padding-left: 15px;
+    }
+    .horizontal-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .horizontal-item,.data-item{
+      display: inline-block;
+      width: 50px;
+      text-align: center;
+      font-size: 12px;
+    }
+    </style>
+  </head>
+<body>
+  <fieldset id="form-gra-time">
+    <legend>请选择日期粒度：</legend>
+    <label>日<input name="gra-time" value="day" type="radio" checked="checked"></label>
+    <label>周<input name="gra-time" value="week" type="radio"></label>
+    <label>月<input name="gra-time" value="month" type="radio"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>请选择查看的城市：</legend>
+    <select id="city-select">
+      <option>北京</option>
+    </select>
+  </fieldset>
+
+  <div class="aqi-chart-wrap" id="chart-wrap">
+    <!-- <div class="chart-box">
+      <span class="vertical-bar">
+        <ul class="vertical-list">
+          <li class="vertical-item">500</li>
+          <li class="vertical-item">450</li>
+          <li class="vertical-item">400</li>
+          <li class="vertical-item">350</li>
+          <li class="vertical-item">300</li>
+          <li class="vertical-item">250</li>
+          <li class="vertical-item">200</li>
+          <li class="vertical-item">150</li>
+          <li class="vertical-item">100</li>
+          <li class="vertical-item">50</li>
+        </ul>
+      </span>
+      <span class="datas-bar">
+        <ul class="datas-list">
+          <li class="data-item" style="height:90px;background-color:#fe1"></li>
+          <li class="data-item" style="height:150px;background-color:#f22"></li>
+          <li class="data-item" style="height:100px;background-color:#ad2"></li>
+          <li class="data-item" style="height:10px;background-color:#a1a"></li>
+          <li class="data-item"></li>
+        </ul>
+      </span>
+      <div class="horizontal-bar">
+        <ul class="horizontal-list">
+          <li class="horizontal-item">01</li>
+          <li class="horizontal-item">02</li>
+          <li class="horizontal-item">03</li>
+          <li class="horizontal-item">04</li>
+          <li class="horizontal-item">05</li>
+        </ul>
+      </div>
+    </div> -->
+  </div>
+  <script src="task.js"></script>
+</body>
+</html>
